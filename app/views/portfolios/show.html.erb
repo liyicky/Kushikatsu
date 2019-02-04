@@ -1,0 +1,11 @@
+<h2><%= @portfolio.title %></h2>
+
+<hr>
+
+<h3><%= @portfolio.subtitle %></h3>
+<p><%= @portfolio.body %></p>
+
+<%= image_tag @portfolio.main_image %>
+
+<br>
+<%= link_to 'Portfolios', portfolios_path %>
