@@ -7,6 +7,11 @@
 
 <%= image_tag @portfolio.main_image %>
 
+<h2>Technologies Used:</h2>
+<% @technologies.each do |tech| %>
+  <p><%= tech.name %></p>
+<% end %>
+
 <br>
 <%= link_to 'Edit', edit_portfolio_path(@portfolio) %>
 <%= link_to 'Delete', @portfolio, method: :delete, data: { confirm: 'Are you sure?' } %>
