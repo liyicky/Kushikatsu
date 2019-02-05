@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :set_blog, only: [:show, :edit, :update, :destroy, :toggle_status]
 
   # GET /blogs
   # GET /blogs.json
@@ -57,6 +57,20 @@ class BlogsController < ApplicationController
     @blog.destroy
     respond_to do |format|
       format.html { redirect_to blogs_url, notice: 'Blog was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def toggle_status
+    case @blog.status
+    when 'draft'
+      @blog.published!
+    when 'published'
+      @blog.draft!
+    end
+
+    respond_to do |format|
+      format.html { redirect_to blogs_url, notice: "#{@blog.friendly_id} was updated to #{@blog.status}" }
       format.json { head :no_content }
     end
   end
